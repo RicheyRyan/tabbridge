@@ -131,7 +131,7 @@
   <Input bind:value={filterValue} ref={setInputRef} />
   <TabList>
     {#each filteredTabs as tab, index (tab.id)}
-      {#if sections[tab.host] && sections[tab.host] === index}
+      {#if sections[tab.host] === index && !filterValue}
         <p class="hostHeader">{tab.host}</p>
       {/if}
       <TabItem
