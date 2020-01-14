@@ -1,0 +1,29 @@
+{
+  "name": "tabbridge",
+  "version": "0.0.1",
+  "description": "Browser addon for managing your tabs",
+  "main": "index.js",
+  "author": "Richey Ryan",
+  "license": "MIT",
+  "dependencies": {
+    "ramda": "^0.26.1",
+    "svelte": "^3.16.7"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.2",
+    "parcel": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.5",
+    "web-ext": "^4.0.0"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn app:serve\" \"yarn ext:serve\"",
+    "app:serve": "parcel src/index.html --public-url /dist/",
+    "app:build": "rm -rf dist && parcel build src/index.html",
+    "ext:build": "yarn run web-ext build --config=config.js",
+    "ext:serve": "yarn run web-ext run",
+    "ext:lint": "yarn run web-ext lint"
+  },
+  "browserslist": [
+    "last 1 chrome versions"
+  ]
+}

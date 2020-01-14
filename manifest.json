@@ -1,0 +1,39 @@
+{
+  "author": "Richey Ryan",
+  "developer": {
+    "name": "Richey Ryan"
+  },
+  "applications": {
+    "gecko": {
+      "strict_min_version": "63.0"
+    }
+  },
+  "background": {
+    "scripts": ["public/background.js"]
+  },
+  "icons": {
+    "32": "public/find.svg"
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Tab Bridge",
+    "default_popup": "dist/index.html",
+    "default_icon": {
+      "32": "public/find.svg"
+    }
+  },
+  "description": "Find and switch to your tabs quickly.",
+  "homepage_url": "https://github.com/RicheyRyan/tabbridge",
+  "manifest_version": 2,
+  "name": "Tab Bridge",
+  "permissions": ["tabs"],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Space",
+        "mac": "MacCtrl+Space"
+      }
+    }
+  },
+  "version": "0.0.1"
+}
