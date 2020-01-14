@@ -9,20 +9,22 @@
   import TabList from "./components/TabList";
   import TabItem from "./components/TabItem";
 
-  let tabs = [];
-  let filteredTabs = [];
-  let sections = {};
-  let selection = -1;
-  let inputRef = null;
-  let tabRef = [];
-  let filterValue = "";
-  let shouldReset = false;
   const tabActions = {
     normal: "normal",
     queryClose: "queryClose"
   };
+
+  let tabs = [];
+  let filterValue = "";
+  let selection = -1;
+  let inputRef = null;
+  let tabRef = [];
+  let shouldReset = false;
   let action = tabActions.normal;
   let isQueryClose = action === tabActions.queryClose;
+
+  $: filteredTabs = Tabs.search(tabs, filterValue);
+  $: sections = Tabs.getSectionIndexes(filteredTabs);
 
   const getTabs = async () => {
     const browserTabs = await Tabs.getCurrentWindowTabs();
@@ -35,21 +37,16 @@
     filterValue = "";
     const currentTab = filteredTabs[selection];
     tabs = Tabs.remove(tabs, currentTab);
-    filteredTabs = tabs;
     selection = -1;
     await Tab.close(currentTab);
   };
 
   onMount(async () => {
     tabs = await getTabs();
-    filteredTabs = tabs;
-    sections = Tabs.getSectionIndexes(filteredTabs);
   });
 
   afterUpdate(() => {
     isQueryClose = action === tabActions.queryClose;
-    filteredTabs = Tabs.search(tabs, filterValue);
-    sections = Tabs.getSectionIndexes(filteredTabs);
     if (selection === -1) {
       inputRef.focus();
     } else {

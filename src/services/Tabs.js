@@ -30,7 +30,7 @@ const Tabs = {
         return 1;
       }
       if (second.host === "Other") {
-        return 1;
+        return -1;
       }
       if (first.host < second.host) return -1;
       if (first.host > second.host) return 1;
