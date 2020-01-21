@@ -3,6 +3,7 @@ import filter from "ramda/src/filter";
 import pipe from "ramda/src/pipe";
 import addIndex from "ramda/src/addIndex";
 import reduce from "ramda/src/reduce";
+import isNil from "ramda/src/isNil";
 
 const compareByStatus = (first, second, status) => {
   if (first[status]) {
@@ -41,7 +42,7 @@ const Tabs = {
     const reduceIndexed = addIndex(reduce);
     return reduceIndexed(
       (acc, { host }, i) => {
-        if (acc[host]) {
+        if (!isNil(acc[host])) {
           return acc;
         }
         return {
