@@ -19,6 +19,7 @@
   }
   .tabLink {
     height: 40px;
+    padding: 0.8em;
     color: #333;
     display: flex;
     align-items: center;
