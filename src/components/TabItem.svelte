@@ -4,6 +4,7 @@
   export let action = null;
   export let ref = null;
   export let onSelection = null;
+  export let onFocus = null;
 
   const { pinned, favIconUrl: favicon, title, id, url } = tab;
 </script>
@@ -11,6 +12,7 @@
 <style>
   .tabItem {
     list-style: none;
+    display: block;
   }
   .unpinnedItem {
     width: 100%;
@@ -36,9 +38,14 @@
   }
   .unpinnedLink {
     padding: 0.8em;
+    box-sizing: border-box;
+  }
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .close {
-    padding: 0.8em;
     background-color: #ff0000;
     color: #ffffff;
     font-weight: 500;
@@ -67,6 +74,7 @@
       class:pinnedLink={pinned}
       class:unpinnedLink={!pinned}
       use:ref
+      on:focus|preventDefault={onFocus}
       on:click|preventDefault={() => onSelection(tab)}
       on:enter={() => onSelection(id)}>
       {#if favicon}
@@ -78,7 +86,9 @@
           class="favicon"
           class:pinnedFavicon={pinned} />
       {/if}
-      {#if !pinned}{title}{/if}
+      {#if !pinned}
+        <span class="title">{title}</span>
+      {/if}
     </a>
   {/if}
 </li>

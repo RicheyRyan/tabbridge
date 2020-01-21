@@ -92,12 +92,17 @@
 
   const handleKeyStroke = ({ key }) => {
     const handler = keyHandlers[key];
-    if (handler) handler();
+    if (handler) {
+      handler();
+    }
   };
 
   const handleSelection = tab => {
     Tab.move(tab);
     window.close();
+  };
+  const handleFocus = i => {
+    selection = i;
   };
 
   const setInputRef = el => (inputRef = el);
@@ -139,6 +144,7 @@
         {action}
         {tab}
         onSelection={handleSelection}
+        onFocus={() => handleFocus(index)}
         ref={el => setTabRef(el, index)} />
     {:else}
       <p class="noResultsMsg">No tabs matching that search</p>
