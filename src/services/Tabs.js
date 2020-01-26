@@ -41,7 +41,10 @@ const Tabs = {
   getSectionIndexes(tabs) {
     const reduceIndexed = addIndex(reduce);
     return reduceIndexed(
-      (acc, { host }, i) => {
+      (acc, { host, pinned }, i) => {
+        if (pinned) {
+          return acc;
+        }
         if (!isNil(acc[host])) {
           return acc;
         }
