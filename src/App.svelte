@@ -130,7 +130,7 @@
   }
 </style>
 
-<svelte:body on:keyup={handleKeyStroke} />
+<svelte:body on:keyup|preventDefault={handleKeyStroke} />
 
 <article class="tabbridge">
   <Input bind:value={filterValue} ref={setInputRef} />

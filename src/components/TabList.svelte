@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    max-height: 450px;
+    overflow: hidden;
   }
 </style>
 
