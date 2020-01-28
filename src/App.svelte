@@ -18,7 +18,7 @@
   let filterValue = "";
   let selection = -1;
   let inputRef = null;
-  let tabRef = [];
+  let tabRef = {};
   let shouldReset = false;
   let action = tabActions.normal;
   let isQueryClose = action === tabActions.queryClose;
@@ -47,10 +47,13 @@
 
   afterUpdate(() => {
     isQueryClose = action === tabActions.queryClose;
+    const current = filteredTabs[selection];
+    console.log(selection);
+    console.log(tabRef);
     if (selection === -1) {
       inputRef.focus();
     } else {
-      tabRef[selection].focus();
+      tabRef[current.id].focus();
     }
     if (shouldReset) {
       reset();
@@ -59,7 +62,7 @@
 
   const keyHandlers = {
     ArrowDown: () => {
-      if (selection < tabs.length - 1) {
+      if (selection < filteredTabs.length - 1) {
         selection += 1;
       } else {
         selection = -1;
@@ -70,7 +73,7 @@
       if (selection > -1) {
         selection -= 1;
       } else {
-        selection = tabs.length - 1;
+        selection = filteredTabs.length - 1;
       }
       action = tabActions.normal;
     },
@@ -106,7 +109,7 @@
   };
 
   const setInputRef = el => (inputRef = el);
-  const setTabRef = (el, i) => (tabRef[i] = el);
+  const setTabRef = (el, id) => (tabRef[id] = el);
 </script>
 
 <style>
@@ -145,7 +148,7 @@
         {tab}
         onSelection={handleSelection}
         onFocus={() => handleFocus(index)}
-        ref={el => setTabRef(el, index)} />
+        ref={el => setTabRef(el, tab.id)} />
     {:else}
       <p class="noResultsMsg">No tabs matching that search</p>
     {/each}
