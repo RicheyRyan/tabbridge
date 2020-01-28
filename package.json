@@ -1,6 +1,6 @@
 {
   "name": "tabbridge",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Browser addon for managing your tabs",
   "main": "index.js",
   "author": "Richey Ryan",
