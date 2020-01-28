@@ -12,6 +12,8 @@ const removeSubDomain = url => {
   return pipe(tail, join("."))(domains);
 };
 
+const isIPAddress = ip => Boolean(ip.match(/([0-9]+.)+/));
+
 const Tab = {
   make(tab) {
     const pickedKeys = pick(
@@ -19,7 +21,9 @@ const Tab = {
       tab
     );
     const url = new URL(tab.url);
-    const newHost = removeSubDomain(url.host);
+    const newHost = isIPAddress(url.host)
+      ? removeSubDomain(url.host)
+      : url.host;
     return {
       ...pickedKeys,
       host: newHost || "Other",
