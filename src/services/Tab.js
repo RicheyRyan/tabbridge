@@ -22,8 +22,8 @@ const Tab = {
     );
     const url = new URL(tab.url);
     const newHost = isIPAddress(url.host)
-      ? removeSubDomain(url.host)
-      : url.host;
+      ? url.host
+      : removeSubDomain(url.host);
     return {
       ...pickedKeys,
       host: newHost || "Other",

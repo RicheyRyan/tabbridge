@@ -10,7 +10,11 @@
     "svelte": "^3.16.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-jest": "^25.1.0",
     "concurrently": "^5.0.2",
+    "jest": "^25.1.0",
     "parcel": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.5",
     "web-ext": "^4.0.0"
@@ -21,7 +25,8 @@
     "app:build": "rm -rf dist && parcel build src/index.html",
     "ext:build": "yarn run web-ext build --config=config.js",
     "ext:serve": "yarn run web-ext run",
-    "ext:lint": "yarn run web-ext lint"
+    "ext:lint": "yarn run web-ext lint",
+    "test": "jest"
   },
   "browserslist": [
     "last 1 chrome versions"

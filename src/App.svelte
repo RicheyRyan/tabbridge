@@ -28,6 +28,7 @@
 
   const getTabs = async () => {
     const browserTabs = await Tabs.getCurrentWindowTabs();
+    console.log(JSON.stringify(browserTabs[0]));
     const tabs = map(Tab.make, browserTabs);
     return tabs;
   };
@@ -48,8 +49,6 @@
   afterUpdate(() => {
     isQueryClose = action === tabActions.queryClose;
     const current = filteredTabs[selection];
-    console.log(selection);
-    console.log(tabRef);
     if (selection === -1) {
       inputRef.focus();
     } else {
